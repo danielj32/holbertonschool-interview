@@ -52,9 +52,7 @@ int is_palindrome(listint_t **head)
 {
 	int length = listint_len(head);
 	int i, if_palindrome = 1;
-	listint_t *rever_head;
-	listint_t *newnode = *head;
-	listint_t *c_reversed;
+	listint_t *rever_head, *c_reversed, *newnode = *head;
 
 	rever_head = *head;
 	for (i = 0; i < (length / 2); i++)
