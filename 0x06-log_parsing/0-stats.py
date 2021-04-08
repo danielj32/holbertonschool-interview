@@ -17,7 +17,7 @@ n_list = {
 ct = 0
 
 
-def printing():
+def printall():
         """ Function that prints logs
             reads stdin l by l and computes metrics:
             (if the format is not this one, the l must be skipped)
@@ -45,8 +45,8 @@ if __name__ == "__main__":
                     if inf[-2] in n_list and isinstance(int(inf[-2]), int):
                             n_list[inf[-2]] += 1
                             if iter % 10 == 0:
-                                    printing()
+                                    printall()
     except Exception:
         pass
     finally:
-        printing()
+        printall()
