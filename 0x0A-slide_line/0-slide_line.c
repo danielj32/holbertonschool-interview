@@ -6,15 +6,15 @@
  */
 void slide_left(int *list, size_t size)
 {
-	size_t i;
+	unsigned int long ct;
 
-	for (i = 0; i < size - 1; i++)
+	for (ct = 0; ct < size - 1; ct++)
 	{
-		if (list[i] == list[i + 1])
+		if (list[ct] == list[ct + 1])
 		{
-			list[i + 1] *= 2;
-			list[i] = 0;
-			++i;
+			list[ct + 1] *= 2;
+			list[ct] = 0;
+			++ct;
 		}
 	}
 }
@@ -26,40 +26,40 @@ void slide_left(int *list, size_t size)
  */
 void slide_right(int *list, size_t size)
 {
-	size_t i;
+	unsigned int long ct;
 
-	for (i = size - 1; i + 1 > 1; i--)
+	for (ct = size - 1; ct + 1 > 1; ct--)
 	{
-		if (list[i] == list[i - 1])
+		if (list[ct] == list[ct - 1])
 		{
-			list[i - 1] *= 2;
-			list[i] = 0;
-			--i;
+			list[ct - 1] *= 2;
+			list[ct] = 0;
+			--ct;
 		}
 	}
 }
 
 /**
- * second_left - moves all ints leftward
+ * second_left - moves all integers leftward
  * @list: a pointer to an integer list
  * @size: number of items in the list
  */
 void second_left(int *list, size_t size)
 {
-	size_t i, tmp;
+	unsigned int long ct, tmp;
 
-	for (i = 1; i < size; i++)
+	for (ct = 1; ct < size; ct++)
 	{
-		if (list[i] != 0)
+		if (list[ct] != 0)
 		{
-			tmp = i;
-			while (list[i - 1] == 0 && i > 0)
+			tmp = ct;
+			while (list[ct - 1] == 0 && ct > 0)
 			{
-				list[i - 1] = list[i];
-				list[i] = 0;
-				--i;
+				list[ct - 1] = list[ct];
+				list[ct] = 0;
+				--ct;
 			}
-			i = tmp;
+			ct = tmp;
 		}
 	}
 }
@@ -71,20 +71,20 @@ void second_left(int *list, size_t size)
  */
 void second_right(int *list, size_t size)
 {
-	size_t i, tmp;
+	unsigned int long ct, tmp;
 
-	for (i = size - 2; i + 1 > 0; i--)
+	for (ct = size - 2; ct + 1 > 0; ct--)
 	{
-		if (list[i] != 0)
+		if (list[ct] != 0)
 		{
-			tmp = i;
-			while (list[i + 1] == 0 && i < size - 1)
+			tmp = ct;
+			while (list[ct + 1] == 0 && ct < size - 1)
 			{
-				list[i + 1] = list[i];
-				list[i] = 0;
-				++i;
+				list[ct + 1] = list[ct];
+				list[ct] = 0;
+				++ct;
 			}
-			i = tmp;
+			ct = tmp;
 		}
 	}
 }
