@@ -9,7 +9,7 @@
 
 void jump_it(int *l, size_t size, int nxt)
 {
-	unsigned int long ct, second, tmp;
+	size_t ct, second, tmp;
 
 	if (nxt == 0)
 	{
@@ -52,7 +52,7 @@ void jump_it(int *l, size_t size, int nxt)
  */
 int slide_line(int *line, size_t size, int direction)
 {
-	unsigned int long ct, second;
+	size_t ct, second;
 
 	if (line == NULL)
 		return (0);
