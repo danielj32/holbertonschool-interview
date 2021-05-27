@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-rain function
+0x10. Rain
 """
 
 
