@@ -11,6 +11,7 @@ but java should not)
 import requests
 import sys
 
+
 def count_words(subreddit, word_list, kw_cont={}, next_pg=None, reap_kw={}):
     """
     recursive function that queries the Reddit API,
