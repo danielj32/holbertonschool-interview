@@ -9,9 +9,9 @@ Javascript should count as javascript,
 but java should not)
 """
 import requests
+import sys
 
-
-def count_words(subreddit, word_list):
+def count_words(subreddit, word_list, kw_cont={}, next_pg=None, reap_kw={}):
     """
     recursive function that queries the Reddit API,
     parses the title of
@@ -19,37 +19,47 @@ def count_words(subreddit, word_list):
     and prints a sorted
     count of given keywords
     """
-    r = requests.get('https://www.reddit.com/r/{}/hot/.json'.format(subreddit),
-                     headers={'User-agent': 'Chrome'})
-    data = {}
-    title_name = []
-    ct = {}
-    for word in word_list:
-        if word not in ct:
-            ct[word] = 0
-    if r.status_code == 200:
-        children = r.json().get('data').get('children')
-        for item in children:
-            title_name.append(item.get('data').get('title'))
-        for title in title_name:
-            for k, v in ct.items():
-                copy = title[:]
-                cut = copy.lower().split(k.lower())
-                ct[k] += len(cut) - 1
-        duplicates = {}
-        for k in ct:
-            if ct[k] == 0:
-                pass
-            elif k.lower() in duplicates:
-                duplicates[k.lower()] += ct[k]
-            else:
-                duplicates[k.lower()] = ct[k]
-        sorted_values = sorted(duplicates.values(), reverse=True)
-        sorted_dict = {}
+    headers = {"User-Agent": "nildiert"}
 
-        for i in sorted_values:
-            for k in duplicates.keys():
-                if duplicates[k] == i:
-                    sorted_dict[k] = duplicates[k]
-        for i in sorted_dict.keys():
-            print("{}: {}".format(i, sorted_dict[i]))
+    if next_pg:
+        subr = requests.get('https://reddit.com/r/' + subreddit +
+                            '/hot.json?after=' + next_pg, headers=headers)
+    else:
+        subr = requests.get('https://reddit.com/r/' + subreddit +
+                            '/hot.json', headers=headers)
+
+    if subr.status_code == 404:
+        return
+
+    if kw_cont == {}:
+        for word in word_list:
+            kw_cont[word] = 0
+            reap_kw[word] = word_list.count(word)
+
+    subr_dict = subr.json()
+    subr_data = subr_dict['data']
+    next_pg = subr_data['after']
+    subr_posts = subr_data['children']
+
+    for post in subr_posts:
+        post_data = post['data']
+        post_title = post_data['title']
+        title_words = post_title.split()
+        for w in title_words:
+            for key in kw_cont:
+                if w.lower() == key.lower():
+                    kw_cont[key] += 1
+
+    if next_pg:
+        count_words(subreddit, word_list, kw_cont, next_pg, reap_kw)
+
+    else:
+        for key, val in reap_kw.items():
+            if val > 1:
+                kw_cont[key] *= val
+
+        sorted_abc = sorted(kw_cont.items(), key=lambda x: x[0])
+        sorted_res = sorted(sorted_abc, key=lambda x: (-x[1], x[0]))
+        for res in sorted_res:
+            if res[1] > 0:
+                print('{}: {}'.format(res[0], res[1]))
