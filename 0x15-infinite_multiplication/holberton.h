@@ -4,5 +4,5 @@
 #include <stdlib.h>
 #include <unistd.h>
 int _putchar(char c);
-int _atoi(char *s);
+int my_atoi(char *s);
 #endif
