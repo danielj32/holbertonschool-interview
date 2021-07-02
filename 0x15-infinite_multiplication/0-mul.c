@@ -9,7 +9,7 @@
 int main(int ac, char *av[])
 {
 	int i, l1, l2;
-	char *result;
+	char *total;
 
 	if (ac != 3)
 	{
@@ -18,20 +18,20 @@ int main(int ac, char *av[])
 	}
 	l1 = valid_integer(av[1]);
 	l2 = valid_integer(av[2]);
-	result = check_if_result(l1 + l2);
-	mul(av[1], av[2], l1, l2, result);
-	for (i = 0; result[i] == '0' && result[i + 1]; i++)
+	total = check_if(l1 + l2);
+	mul(av[1], av[2], l1, l2, total);
+	for (i = 0; total[i] == '0' && total[i + 1]; i++)
 	{
 		;
 	}
-	printf("%s\n", &result[i]);
-	free(result);
+	printf("%s\n", &total[i]);
+	free(total);
 	return (0);
 }
 
 /**
  * valid_integer - checks if argument is a valid integer
- * @av: the argument
+ * @av: is the argument
  * Return: returns the length of argument
  */
 
@@ -51,12 +51,12 @@ int valid_integer(char *av)
 }
 
 /**
- * check_if_result - allocates a memory for the result
- * @length: length of the result
+ * check_if - allocates a memory for the total
+ * @length: length of the total
  * Return: A pointer to the empty allocated memory
  */
 
-char *check_if_result(int length)
+char *check_if(int length)
 {
 	char *p;
 	int i;
@@ -81,9 +81,9 @@ char *check_if_result(int length)
  * @av2: array of second number
  * @l1: length of first array
  * @l2: length of second array
- * @result: array of the result of mul
+ * @total: array of the total of mul
  */
-void mul(char *av1, char *av2, int l1, int l2, char *result)
+void mul(char *av1, char *av2, int l1, int l2, char *total)
 {
 	int i, j;
 
@@ -91,26 +91,26 @@ void mul(char *av1, char *av2, int l1, int l2, char *result)
 	{
 		for (j = l1 - 1; j >= 0; j--)
 		{
-			insert(result, (av2[i] - '0') * (av1[j] - '0'), i + j + 1);
+			insert(total, (av2[i] - '0') * (av1[j] - '0'), i + j + 1);
 		}
 	}
 }
 /**
  * insert - inserts the product of 2 numbers in an array of characters
- * @result: the array of result
+ * @total: the array of total
  * @x: the product of 2 numbers
  * @position: position of insertion in the array
  */
-void insert(char *result, int x, int position)
+void insert(char *total, int x, int position)
 {
-	x = x + (result[position] - '0');
+	x = x + (total[position] - '0');
 	while (x > 0)
 	{
-		result[position] = (x % 10) + '0';
+		total[position] = (x % 10) + '0';
 		x /= 10;
 		if (x == 0)
 			break;
 		position--;
-		x += (result[position] - '0');
+		x += (total[position] - '0');
 	}
 }
