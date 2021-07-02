@@ -4,5 +4,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 int _putchar(char c);
-int my_atoi(char *s);
+int valid_integer(char *argv);
+char *check_if_result(int length);
+void mul(char *argv1, char *argv2, int l1, int l2, char *result);
+void insert(char *result, int x, int position);
 #endif
