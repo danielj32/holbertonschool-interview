@@ -41,7 +41,7 @@ int valid_integer(char *av)
 
 	for (i = 0; av[i]; i++)
 	{
-		if (av[i] < '0' || av[i] > '9')
+		if (av[i] < 48 || av[i] > 57)
 		{
 			printf("Error\n");
 			exit(98);
