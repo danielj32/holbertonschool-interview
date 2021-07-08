@@ -6,6 +6,7 @@ The matrix must be edited in-place.
 You can assume the matrix will have 2 dimensions and will not be empty.
 """
 
+
 def rotate_2d_matrix(matrix):
     """ Given an n x n 2D matrix,
     rotate it
@@ -22,4 +23,4 @@ def rotate_2d_matrix(matrix):
             matrix[ult + begin - x][begin] = temp2
             matrix[begin][x] = temp
         begin = begin + 1
-        ult = ult -1
+        ult = ult - 1
