@@ -24,8 +24,7 @@ void merging(int *array, int *begin, int *last, size_t size)
 	{
 		if (begin[i] < last[j])
 			array[k++] = begin[i++];
-		else
-			array[k++] = last[j++];
+		array[k++] = last[j++];
 	}
 
 	while (i < first_size)
