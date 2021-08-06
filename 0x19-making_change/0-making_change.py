@@ -20,7 +20,7 @@ def makeChange(coins, total):
         while coins[aux] <= total - sm:
             sm += coins[aux]
             temp = temp + 1
-            if sm is total:
+            if sm == total:
                 return temp
         aux = aux + 1
     return -1
