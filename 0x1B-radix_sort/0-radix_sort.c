@@ -1,7 +1,7 @@
 #include "sort.h"
 
 /**
- * pow_then - Function that calculates pow of 10
+ * pow_then - calculates pow of 10
  * @pow: pow to calculate
  *
  * Return: 10 ^ number
