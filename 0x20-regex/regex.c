@@ -12,7 +12,7 @@ int regex_match(char const *str, char const *pattern)
 
 	if (*str == '\0')
 		return (1);
-	else if (*pattern == '\0')
+	if (*pattern == '\0')
 		return (1);
 	if ((*str == *pattern || *pattern == '.') && *(pattern + 1) != '*')
 		return (regex_match(str + 1, pattern + 1));
