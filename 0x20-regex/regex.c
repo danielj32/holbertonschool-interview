@@ -12,7 +12,7 @@ int regex_match(char const *str, char const *pattern)
 
 	if (!str)
 		return (0);
-	else if (!pattern)
+	if (!pattern)
 		return (0);
 
 	down = *str && (*str == *pattern || *pattern == '.');
@@ -20,7 +20,7 @@ int regex_match(char const *str, char const *pattern)
 
 	if (!*str)
 		return (*pattern ? 0 : 1);
-	else if (!upt)
+	if (!upt)
 		return (*pattern ? 0 : 1);
 	if (down && upt)
 		return (regex_match(str + 1, pattern) || regex_match(str, pattern + 2));
