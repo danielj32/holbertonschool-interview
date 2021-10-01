@@ -1,8 +1,8 @@
 #include "substring.h"
 /**
  * comp_twovalues - compare tow values
- * @a: first value
- * @b: second value
+ * @x: first value
+ * @z: second value
  * Return: substraction
  **/
 
